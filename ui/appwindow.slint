@@ -1,0 +1,51 @@
+import { VerticalBox, HorizontalBox } from "std-widgets.slint";
+
+
+export component AppWindow inherits Window {
+    title: "F1 APP";
+    width: 1920px;
+    height: 1080px;
+    background: white;
+    no-frame: false;
+    HorizontalLayout {
+        width: parent.width;
+        alignment: start;
+       option-bar := VerticalLayout {
+            alignment: stretch;
+            width: parent.width * 0.15;
+            Rectangle {
+                background: #6b3838;
+                //x: parent.x;
+                width: parent.width;
+                logo := Image {
+                    source: @image-url("icons/f1_logo.png");
+                    image-fit: contain;
+                    width: 50%;
+                    height: 50%;
+                    y: parent.y - 220px;
+                    
+                }
+                tekst :=Text {
+                    y: parent.y - logo.y * 0.5;
+                    text: "JAZDA";
+                }
+
+            }
+        
+        }
+    }
+    information-canvas := VerticalLayout {
+        x: option-bar.width;
+        width: parent.width * 0.85;
+        Rectangle {
+                background: #6a93ac;
+                
+            }
+        
+
+    }
+}
+    
+    
+
+
