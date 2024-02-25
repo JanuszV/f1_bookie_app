@@ -1,46 +1,78 @@
 import { VerticalBox, HorizontalBox } from "std-widgets.slint";
-
+import {OptionBarTile} from "option-bar-tile.slint";
+import "fonts\nasalization-rg.otf";
 
 export component AppWindow inherits Window {
     title: "F1 APP";
     width: 1920px;
     height: 1080px;
-    background: white;
+    background: #252525;
     no-frame: false;
+
     HorizontalLayout {
-        width: parent.width;
-        alignment: start;
-       option-bar := VerticalLayout {
-            alignment: stretch;
+      
+        
+        option-bar := VerticalLayout {
+            alignment: end;
             width: parent.width * 0.15;
+            y: parent.y - 10px;
+            outline := 
             Rectangle {
-                background: #6b3838;
-                //x: parent.x;
-                width: parent.width;
-                logo := Image {
-                    source: @image-url("icons/f1_logo.png");
-                    image-fit: contain;
-                    width: 50%;
-                    height: 50%;
-                    y: parent.y - 220px;
+                width: parent.width + 50px;
+                x: parent.x - 25px;
+                height: parent.height + 20px;
+                border-radius: 25px;
+                border-width: 10px;
+                border-color: white;
+                
+                logo := Rectangle{ 
+                logo-btn:=TouchArea{
+
+                }
+                teks:=Text{
+                    y: parent.y;
+                    x: parent.x + 50px;
+                    font-family: "Nasalization";
+                    text: "F1.BG";
+                    color: white;
+                    font-size: 96px;
+                    
                     
                 }
-                tekst :=Text {
-                    y: parent.y - logo.y * 0.5;
-                    text: "JAZDA";
+
+                spark := Image{
+                    source: @image-url("icons/red_lightning.png");
+                    y: teks.y + teks.height/3;
+                    x: teks.x + 6px;
+                    rotation-angle: -30deg;
+                    height: 200px;
+                    width: 240px;
+                    image-rendering: smooth;
+
                 }
+            }
+            next-race-bet := OptionBarTile{
+                y: spark.height + 20px;
+                tekst: "Zrób zakład na następny wyścig";
+            }
+
+            season-classification := OptionBarTile{
+                y:next-race-bet.y + 60px;
+                tekst: "Klasyfikacja sezonu";
+            }
+            ongoing-race := OptionBarTile{
+                y: season-classification.y + 60px;
+                tekst: "Aktualny wyścig na żywo";
+            }
 
             }
-        
-        }
+            
+       }           
     }
     information-canvas := VerticalLayout {
         x: option-bar.width;
         width: parent.width * 0.85;
-        Rectangle {
-                background: #6a93ac;
-                
-            }
+        
         
 
     }
