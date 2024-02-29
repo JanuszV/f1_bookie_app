@@ -1,0 +1,62 @@
+.app-window {
+    width: 1920px;
+    height: 1080px;
+    background: #252525;
+}
+
+.option-bar {
+    float: left;
+    width: 15%;
+    height: 100%;
+    padding: 10px;
+    background: #000;
+    color: #fff;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.option-bar-tile {
+    margin-bottom: 20px;
+}
+
+.information-canvas {
+    float: left;
+    width: 85%;
+    height: 100%;
+    padding: 10px;
+    background: #fff;
+    color: #000;
+}
+
+.outer {
+    height: 50px;
+    width: 250px;
+    background: #fffefe;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+}
+
+.inner {
+    height: 45px;
+    width: 245px;
+    background: #252525;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+}
+
+.inner-text {
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 45px; /* Center text vertically */
+}
+
+.option-bar-tile:hover .inner {
+    background: #535353;
+}
+
