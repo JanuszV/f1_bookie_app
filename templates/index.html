@@ -1,44 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 APP</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>F1.BG</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body>
-    <div class="app-window">
-        <div class="option-bar">
-            <div class="logo">
-                <h1>F1.BG</h1>
-                <img src="{{ url_for('static', filename='icons/red_lightning.png') }}" alt="Spark Image">
-            </div>
-            <div class="option-bar-tile">
-                <div class="outer">
-                    <div class="inner">
-                        <p class="inner-text">1</p>
+
+    <body>
+        <div id="container">
+            <div id="option-bar">
+                <div id = "option-logo" onclick="updateCanvas('Home')">
+                    <div id="option-text">
+                        <p>F1.BG</p>
+                    </div>
+                    <div id="option-image-container">
+                        <img src="/static/icons/red_lightning.png" alt="Logo F1">
                     </div>
                 </div>
-            </div>
-            <div class="option-bar-tile">
-                <div class="outer">
-                    <div class="inner">
-                        <p class="inner-text">2</p>
-                    </div>
+                <div class="option-bar-tile" onclick="updateCanvas('Zasady')">Zasady</div>
+                <div class="option-bar-tile" onclick="updateCanvas('Formularz')">Dodaj zakład</div>
+                <div class="option-bar-tile" onclick="updateCanvas('Klasyfikacja')">Klasyfikacja generalna</div>
+                <div id="date-time">
+                    <p>Data: <span id="current-date"></span></p>
+                    <p>Czas: <span id="current-time"></span></p>
                 </div>
             </div>
-            <div class="option-bar-tile">
-                <div class="outer">
-                    <div class="inner">
-                        <p class="inner-text">3</p>
-                    </div>
+            <div id="information-canvas">
+                <!-- Main content goes here -->
+                <div id="information-text">
+                    <p>Witajcie w Formula 1 Betting Game</p>
+                    <p>Zapraszam Was serdecznie do udziału w naszej wspólnej zabawie</p>
+                    <p>Dołączcie do nas i śledźcie emocje sportowego świata razem z nami!</p>
                 </div>
             </div>
+
         </div>
-        <div class="information-canvas">
-            <!-- Content dynamically loaded using Flask -->
-        </div>
-    </div>
-    
-</body>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+
 </html>

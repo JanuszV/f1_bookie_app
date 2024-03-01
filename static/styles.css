@@ -1,62 +1,135 @@
-.app-window {
-    width: 1920px;
-    height: 1080px;
-    background: #252525;
+@font-face {
+    font-family: 'Nasalization';
+    src: url('/fonts/nasalization-rg.otf') format('otf');
+}
+@font-face {
+    font-family: 'F1-regular';
+    src: url('/fonts/Formula1-Regular_web_0.ttf') format('ttf');
 }
 
-.option-bar {
-    float: left;
+
+
+body {
+    margin: 0;
+    padding: 0;
+    
+}
+#container {
+    display: flex;
+    height: 100vh;
+}
+#option-bar {
     width: 15%;
-    height: 100%;
-    padding: 10px;
-    background: #000;
-    color: #fff;
+    background-color: #333;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
-.logo {
-    margin-bottom: 20px;
+
+#option-text {
+    font-family: 'Nasalization';
+    color: white;
+    position: absolute;
+    top: -8%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 85px;
 }
+
+
+
+
+#information-canvas {
+    width: 85%;
+    background-color: #252525;
+    position: relative;
+    
+}
+
+#information-text {
+    font-family: 'Nasalization';
+    font-size: 48px;
+    color: white;/* White color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+/* Image */
+#option-image-container {
+    top: 100%; /* Adjust as needed */
+    text-align: center;
+}
+
+#option-image-container img {
+    width: 160px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    transform: rotate(-40deg); /* Rotate the image by 45 degrees */
+    margin-top: 15%;
+}
+
+
 
 .option-bar-tile {
-    margin-bottom: 20px;
-}
-
-.information-canvas {
-    float: left;
-    width: 85%;
-    height: 100%;
-    padding: 10px;
-    background: #fff;
-    color: #000;
-}
-
-.outer {
     height: 50px;
     width: 250px;
-    background: #fffefe;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
-}
-
-.inner {
-    height: 45px;
-    width: 245px;
     background: #252525;
+    padding: 2px;
     border-radius: 5px;
+    margin-bottom: 10px; /* Add margin between tiles */
     display: flex;
     justify-content: center; /* Horizontally center the content */
     align-items: center; /* Vertically center the content */
+    cursor: pointer; /* Add pointer cursor on hover */
+    color: white;
+    font-family: 'Nasalization', sans-serif;
 }
 
-.inner-text {
-    color: #FFFFFF;
-    text-align: center;
-    line-height: 45px; /* Center text vertically */
-}
-
-.option-bar-tile:hover .inner {
+.option-bar-tile:hover {
     background: #535353;
 }
 
+.option-bar-tile:hover .inner {
+    background: #535353; /* Change inner background on hover */
+}
+
+
+/* Pseudo-element for right padding */
+.option-bar-tile::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px; /* Adjust padding width as needed */
+    height: 100%;
+    background-color: #ffffff; /* Color for right padding */
+}
+
+
+
+/* Date and Time */
+#date-time {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    color: white;
+    transform: translateX(-50%);
+    font-family: 'Nasalization';
+    font-size: 10px;
+}
+
+#date-time p {
+    margin: 5px 0;
+}
+
+#current-date,
+#current-time {
+    font-family:'Nasalization';
+    color: white;
+}
