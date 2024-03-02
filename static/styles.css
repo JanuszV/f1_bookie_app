@@ -79,6 +79,7 @@ body {
 .option-bar-tile {
     height: 50px;
     width: 250px;
+    border: 1px solid #ccc;
     background: #252525;
     padding: 2px;
     border-radius: 5px;
@@ -132,4 +133,52 @@ body {
 #current-time {
     font-family:'Nasalization';
     color: white;
+}
+
+ #addons, .kierowcy {
+    border-radius: 5px;
+    font-size: 24px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+#nick {
+    width: 138px;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#submit-button {
+    width: 138px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.form-label {
+    text-align: center;
+    margin-right: 10px; /* Adjust this value as needed */
+    display: inline-block;
+    width: 120px; /* Adjust this value as needed */
+}
+
+.form-text {
+    text-align: center;
+    font-size: 16x;
 }
