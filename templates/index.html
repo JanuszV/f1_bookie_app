@@ -21,7 +21,7 @@
                 </div>
                 <div class="option-bar-tile" onclick="updateCanvas('Zasady')">Zasady</div>
                 <div class="option-bar-tile" onclick="updateCanvas('Formularz')">Dodaj zakład</div>
-                <div class="option-bar-tile" onclick="updateCanvas('Klasyfikacja')">Klasyfikacja generalna</div>
+                <div class="option-bar-tile" onclick="updateCanvas('Dodano')">Aktualne Zakłady</div>
                 <div id="date-time">
                     <p>Data: <span id="current-date"></span></p>
                     <p>Czas: <span id="current-time"></span></p>
@@ -36,6 +36,10 @@
                 </div>
             </div>
 
+        </div>
+        <div id="custom-alert" class="custom-alert">
+            <span id="custom-alert-message" class="custom-alert-message"></span>
+            <button id="custom-alert-close" class="custom-alert-close">Zamknij komunikat</button>
         </div>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>

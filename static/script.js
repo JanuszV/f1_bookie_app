@@ -14,6 +14,19 @@ updateDateTime();
 // Update date and time every second
 setInterval(updateDateTime, 1000);
 
+// Function to show custom alert
+function showCustomAlert(message) {
+    var customAlert = document.getElementById('custom-alert');
+    var customAlertMessage = document.getElementById('custom-alert-message');
+    customAlertMessage.textContent = message;
+    customAlert.style.display = 'block';
+
+    // Add event listener to close button
+    var closeButton = document.getElementById('custom-alert-close');
+    closeButton.addEventListener('click', function() {
+        customAlert.style.display = 'none';
+    });
+}
 
 function updateCanvas(content) {
     // Get the information canvas element
@@ -81,6 +94,7 @@ function updateCanvas(content) {
 
         // Set the HTML content with the form
         infoCanvas.innerHTML = `
+            
             <h2>Dodaj zakład</h2>
             <form id="myForm">
                 <label class="form-label" for="nick">Nick:</label>
@@ -341,12 +355,135 @@ function updateCanvas(content) {
                                                            <option value="rus">George Russell</option>
                                                        </select><br>
             </form>
-            <button id="submit-button">Wyślij zakład<br>
-        `;
-       
-    } else {
-        infoCanvas.style.fontSize = "48px"
-        // Update the content dynamically
-        infoCanvas.innerHTML = `<h2>${content}</h2><p>This is the content for ${content}.</p>`;
-    }
+            `
+        ;
+    
+        var button = document.createElement('button');
+        button.id = 'submit-button';
+        button.textContent = 'Wyślij zakład';
+        infoCanvas.appendChild(button);
+
+        // Add event listener to the button
+        button.addEventListener('click', function() {
+            var selectedValues = [];
+        
+            // Get the value of the input with ID "nick"
+            var nickValue = document.getElementById('nick').value;
+            selectedValues.push(nickValue);
+            
+            if (nickValue.trim() === '') {
+                showCustomAlert('Błąd: Brak wprowadzanego nicku');
+                return; // Exit the function
+            }
+            // Get all select elements
+            var selects = document.querySelectorAll('select');
+            
+            // Loop through each select element
+            selects.forEach(function(select) {
+                // Get the selected option
+                var selectedOption = select.options[select.selectedIndex];
+                // Add the selected value to the list
+                selectedValues.push(selectedOption.value);
+            });
+            
+            // Validate selected values for places 1 to 10
+            var places = selectedValues.slice(1, 11); // Extract places 1 to 10
+            var hasDuplicate = places.some(function(place, index) {
+                return places.indexOf(place) !== index; // Check for duplicates
+            });
+
+            // Reset the form or display an error message
+            if (hasDuplicate) {
+                // Display error message
+                showCustomAlert('Błąd: Kierowcy w obstawionym Top 10 nie mogą się powtarzać');
+                // Optionally, you can clear the selected values
+                // document.getElementById('myForm').reset();
+            } else {
+                // Reset the form
+                showCustomAlert('Sukces: Poprawnie dodano zakład')
+                setTimeout(function() {
+                    submitData(selectedValues)
+                    
+                    
+                    var closeButton = document.getElementById('custom-alert-close');
+                    closeButton.click();
+                    updateCanvas("Dodano");
+                // You can do further processing with the selected values here
+                }, 2000);
+            }
+        });
+      
+    } else if (content === "Dodano") {  
+        viewData();
 }
+
+
+function submitData(selectedValues) {
+    // Constructing the form data object
+    const formData = {
+        nick: selectedValues[0],
+        first: selectedValues[1],
+        second: selectedValues[2],
+        third: selectedValues[3],
+        fourth: selectedValues[4],
+        fifth: selectedValues[5],
+        sixth: selectedValues[6],
+        seventh: selectedValues[7],
+        eighth: selectedValues[8],
+        ninth: selectedValues[9],
+        tenth: selectedValues[10],
+        random_event: selectedValues[11],
+        event_driver: selectedValues[12]
+    };
+
+    // Make an AJAX POST request to the Flask route
+    fetch('/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (response.ok) {
+            // If the request was successful, do something
+            console.log('Form submitted successfully');
+        } else {
+            // If there was an error, handle it
+            console.error('Form submission failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function viewData() {
+    fetch('/view_data')
+    .then(response => response.json())
+    .then(data => {
+        // Generate HTML for each set in the list
+        let containerHTML = '<div style="display: flex; overflow-x: auto; font-size:30px;">';
+        data.forEach(set => {
+            let tableHTML = '<table border= "3" style="float: right; margin-left: 10px; border-collapse: collapse;">'; // Added border styles
+            tableHTML += '<thead><tr>';
+            tableHTML += `<th font-weight: bold;">${set[0]}</th>`; // Added font-weight:bold; and border styles
+            tableHTML += '</tr></thead>';
+            tableHTML += '<tbody>';
+            for (let i = 1; i < set.length; i++) {
+                tableHTML += `<tr><td style="white-space: nowrap;">${set[i]}</td></tr>`;
+            }
+            tableHTML += '</tbody></table>';
+            containerHTML += tableHTML;
+        });
+                // Close the container div 
+                containerHTML += '</div>';
+
+                // Append the container to the infoCanvas
+                infoCanvas.innerHTML = containerHTML;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}}
