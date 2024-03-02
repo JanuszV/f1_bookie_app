@@ -40,7 +40,7 @@
 build
 
 #database
-*.db
+
 
 clear_database.py
 f1_fun.py
