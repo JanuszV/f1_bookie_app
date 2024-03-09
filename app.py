@@ -55,7 +55,7 @@ def submit_form():
     # Insert the form data into the QueueData table
     try:
         cursor.execute("""
-            INSERT INTO QueueData (nick, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, random_event, event_driver)
+            INSERT INTO QueueData_Bahrain (nick, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, random_event, event_driver)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             form_data['nick'],
@@ -89,7 +89,7 @@ def view_data():
         cursor = conn.cursor()
 
         # Fetch the QueueData from the database
-        cursor.execute("SELECT * FROM QueueData")
+        cursor.execute("SELECT * FROM QueueData_Bahrain")
         queue_data = cursor.fetchall()
 
         # Close the database connection
@@ -98,7 +98,6 @@ def view_data():
         for i, data_set in enumerate(queue_data):
             # Iterate through indexes 1 to 11 and 13
             for j in range(0, 13):
-                    print(j)
                     # Get the key at index j
                     key = data_set[j]
                     # Update the value at index j with the driver name from the dictionary
