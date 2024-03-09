@@ -414,7 +414,9 @@ function updateCanvas(content) {
         });
       
     } else if (content === "Dodano") {  
-        viewData();
+        setTimeout(function() {
+            viewData, 2000
+        })
 }
 
 
@@ -463,6 +465,7 @@ function viewData() {
     fetch('/view_data')
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         // Generate HTML for each set in the list
         let containerHTML = '<div style="display: flex; overflow-x: auto; font-size:30px;">';
         data.forEach(set => {
