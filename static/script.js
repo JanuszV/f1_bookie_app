@@ -64,7 +64,7 @@ function updateCanvas(content) {
                 <td>15 pkt</td>
             </tr>
             <tr>
-                <td>Wypadek</td>
+                <td>Wypadek/Kolizja</td>
                 <td>4 pkt</td>
             </tr>
             <tr>
@@ -415,8 +415,8 @@ function updateCanvas(content) {
       
     } else if (content === "Dodano") {  
         setTimeout(function() {
-            viewData, 2000
-        })
+            viewData();
+        },);
 }
 
 
